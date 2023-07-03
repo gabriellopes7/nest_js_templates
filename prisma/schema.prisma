@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+
+model users {
+  id String @id @default(uuid()) @map("_id")
+  email String
+  password String
+  role Int @default(value: 0)
+  refreshToken String?
+}
+
+model owners {
+  id String @id @default(uuid()) @map("_id")
+  name String
+  lastname String
+  document String  
+  leashes leashes[]
+}
+
+model leashes {
+  id String @id @default(uuid()) @map("_id")
+  name String
+  owner owners @relation(fields: [ownerid], references: [id])
+  ownerid String
+  locations locations[]
+}
+
+model locations{
+  id String @id @default(uuid()) @map("_id")
+  latitude String
+  longitude String
+  leash leashes @relation(fields: [leashid], references: [id])
+  leashid String
+}
