@@ -25,6 +25,7 @@
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This templates is an Authentication pattern to implement Refresh and Access Token for your users.
 
 ## Installation
 
